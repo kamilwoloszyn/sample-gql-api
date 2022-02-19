@@ -1,4 +1,4 @@
-package database
+package handlers
 
 import (
 	"context"
@@ -8,10 +8,6 @@ import (
 	"github.com/kamilwoloszyn/sample-gql-api/domain/entity"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
-)
-
-const (
-	FieldID = "id"
 )
 
 type ProductHandler struct {
@@ -108,6 +104,12 @@ func (ph *ProductHandler) FindById(ctx context.Context, id string) (entity.Produ
 		},
 	}
 	result := ph.handler.FindOne(ctx, filterQuery)
+	if err := result.Err(); err != nil {
+		if err == mongo.ErrNoDocuments {
+			return entity.Product{}, nil
+		}
+		return entity.Product{}, fmt.Errorf("fetching products from db")
+	}
 	var product entity.Product
 	if err := result.Decode(&product); err != nil {
 		return entity.Product{}, fmt.Errorf("decode product: %s", err)

@@ -8,8 +8,8 @@ type Category struct {
 	DeletedAt    int64
 }
 
-func (c *Category) Validate() error {
-	return nil
+func (c *Category) IsValid() bool {
+	return c.CategoryName != ""
 }
 func (c *Category) GetID() string {
 	return c.ID

@@ -15,8 +15,13 @@ type Product struct {
 	DeletedAt         int64
 }
 
-func (p *Product) Validate() error {
-	return nil
+func (p *Product) IsValid() bool {
+	if p.Name != "" &&
+		p.Gtin != "" &&
+		p.SKU != "" {
+		return true
+	}
+	return false
 }
 
 func (p *Product) GetID() string {
