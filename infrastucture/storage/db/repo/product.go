@@ -1,4 +1,4 @@
-package handlers
+package repo
 
 import (
 	"context"
@@ -10,17 +10,17 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type ProductHandler struct {
+type ProductRepo struct {
 	handler *mongo.Collection
 }
 
-func NewProductHandler(handler *mongo.Collection) *ProductHandler {
-	return &ProductHandler{
+func NewProductRepo(handler *mongo.Collection) *ProductRepo {
+	return &ProductRepo{
 		handler: handler,
 	}
 }
 
-func (ph *ProductHandler) Insert(ctx context.Context, product entity.Product) error {
+func (ph *ProductRepo) Insert(ctx context.Context, product entity.Product) error {
 	if ph.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}
@@ -31,7 +31,7 @@ func (ph *ProductHandler) Insert(ctx context.Context, product entity.Product) er
 	return nil
 }
 
-func (ph *ProductHandler) BatchInsert(ctx context.Context, products []entity.Product) error {
+func (ph *ProductRepo) BatchInsert(ctx context.Context, products []entity.Product) error {
 	if ph.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}
@@ -44,7 +44,7 @@ func (ph *ProductHandler) BatchInsert(ctx context.Context, products []entity.Pro
 	return nil
 }
 
-func (ph *ProductHandler) Update(ctx context.Context, product entity.Product) error {
+func (ph *ProductRepo) Update(ctx context.Context, product entity.Product) error {
 	if ph.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}
@@ -58,7 +58,7 @@ func (ph *ProductHandler) Update(ctx context.Context, product entity.Product) er
 	}
 	return nil
 }
-func (ph *ProductHandler) DeleteSoft(ctx context.Context, product entity.Product) error {
+func (ph *ProductRepo) DeleteSoft(ctx context.Context, product entity.Product) error {
 	if ph.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}
@@ -74,7 +74,7 @@ func (ph *ProductHandler) DeleteSoft(ctx context.Context, product entity.Product
 	return nil
 }
 
-func (ph *ProductHandler) Delete(ctx context.Context, product entity.Product) error {
+func (ph *ProductRepo) Delete(ctx context.Context, product entity.Product) error {
 	if ph.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}
@@ -94,7 +94,7 @@ func (ph *ProductHandler) Delete(ctx context.Context, product entity.Product) er
 	return nil
 }
 
-func (ph *ProductHandler) FindById(ctx context.Context, id string) (entity.Product, error) {
+func (ph *ProductRepo) FindById(ctx context.Context, id string) (entity.Product, error) {
 	if ph.handler == nil {
 		return entity.Product{}, fmt.Errorf("handler not defined")
 	}

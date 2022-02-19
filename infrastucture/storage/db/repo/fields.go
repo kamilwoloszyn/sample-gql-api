@@ -1,4 +1,4 @@
-package handlers
+package repo
 
 const (
 	FieldID = "id"

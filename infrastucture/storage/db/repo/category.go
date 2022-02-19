@@ -1,4 +1,4 @@
-package handlers
+package repo
 
 import (
 	"context"
@@ -10,17 +10,17 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type CategoryHandler struct {
+type CategoryRepo struct {
 	handler *mongo.Collection
 }
 
-func NewCategoryHandler(handler *mongo.Collection) *CategoryHandler {
-	return &CategoryHandler{
+func NewCategoryRepo(handler *mongo.Collection) *CategoryRepo {
+	return &CategoryRepo{
 		handler: handler,
 	}
 }
 
-func (c *CategoryHandler) InsertCategory(ctx context.Context, category entity.Category) error {
+func (c *CategoryRepo) InsertCategory(ctx context.Context, category entity.Category) error {
 	if c.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}
@@ -31,7 +31,7 @@ func (c *CategoryHandler) InsertCategory(ctx context.Context, category entity.Ca
 	return nil
 }
 
-func (c *CategoryHandler) DeleteSoft(ctx context.Context, category entity.Category) error {
+func (c *CategoryRepo) DeleteSoft(ctx context.Context, category entity.Category) error {
 	if c.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}
@@ -47,7 +47,7 @@ func (c *CategoryHandler) DeleteSoft(ctx context.Context, category entity.Catego
 	return nil
 }
 
-func (c *CategoryHandler) Delete(ctx context.Context, category entity.Category) error {
+func (c *CategoryRepo) Delete(ctx context.Context, category entity.Category) error {
 	if c.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}
@@ -68,7 +68,7 @@ func (c *CategoryHandler) Delete(ctx context.Context, category entity.Category) 
 
 }
 
-func (c *CategoryHandler) FindByID(ctx context.Context, id string) (entity.Category, error) {
+func (c *CategoryRepo) FindByID(ctx context.Context, id string) (entity.Category, error) {
 	if c.handler == nil {
 		return entity.Category{}, fmt.Errorf("handler not defined")
 	}
