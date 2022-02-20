@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/kamilwoloszyn/sample-gql-api/domain/entity"
+	"github.com/kamilwoloszyn/sample-gql-api/infrastucture/storage/db"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -14,13 +15,14 @@ type CategoryRepo struct {
 	handler *mongo.Collection
 }
 
-func NewCategoryRepo(handler *mongo.Collection) *CategoryRepo {
+func NewCategoryRepo(db *db.Database) *CategoryRepo {
+	handler := db.GetCollectionHandler(CollectionNameCategory)
 	return &CategoryRepo{
 		handler: handler,
 	}
 }
 
-func (c *CategoryRepo) InsertCategory(ctx context.Context, category entity.Category) error {
+func (c *CategoryRepo) Insert(ctx context.Context, category entity.Category) error {
 	if c.handler == nil {
 		return fmt.Errorf("handler not defined")
 	}

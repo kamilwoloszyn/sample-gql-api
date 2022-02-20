@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/kamilwoloszyn/sample-gql-api/domain/entity"
+	"github.com/kamilwoloszyn/sample-gql-api/infrastucture/storage/db"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -14,7 +15,8 @@ type ProductRepo struct {
 	handler *mongo.Collection
 }
 
-func NewProductRepo(handler *mongo.Collection) *ProductRepo {
+func NewProductRepo(db *db.Database) *ProductRepo {
+	handler := db.GetCollectionHandler(CollectionNameProduct)
 	return &ProductRepo{
 		handler: handler,
 	}
