@@ -25,7 +25,11 @@ func main() {
 		conf.DatabaseName,
 	)
 	if err != nil {
-		log.Fatalf("unable connect to db: %s", err)
+		log.Fatalf("initialize db: %s", err)
+	}
+
+	if err := database.TestConnection(ctx, conf.DatabaseConnectionTimeout); err != nil {
+		log.Fatalf("ping database failed: %s", err)
 	}
 
 	categoryRepo := repo.NewCategoryRepo(database)
