@@ -7,7 +7,7 @@ import (
 )
 
 type ProductRepo interface {
-	NewProduct(context.Context, entity.Product) error
+	Insert(context.Context, entity.Product) error
 	BatchInsert(context.Context, []entity.Product) error
 	Update(context.Context, entity.Product) error
 	DeleteSoft(context.Context, entity.Product) error
