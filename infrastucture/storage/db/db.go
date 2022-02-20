@@ -32,7 +32,7 @@ func InitializeDatabase(
 		clientOpts,
 	)
 	if err != nil {
-		return nil, fmt.Errorf("connecting to db: %s", err)
+		return nil, fmt.Errorf("initialize db: %s", err)
 	}
 	return &Database{
 		client: client,
