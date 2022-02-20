@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/kamilwoloszyn/sample-gql-api/domain/entity"
-	"github.com/kamilwoloszyn/sample-gql-api/infrastucture/storage/db"
+	"github.com/kamilwoloszyn/sample-gql-api/infrastucture/persistence/db"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )

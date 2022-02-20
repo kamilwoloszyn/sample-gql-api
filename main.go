@@ -6,8 +6,8 @@ import (
 
 	"github.com/caarlos0/env/v6"
 	"github.com/kamilwoloszyn/sample-gql-api/config"
-	"github.com/kamilwoloszyn/sample-gql-api/infrastucture/storage/db"
-	"github.com/kamilwoloszyn/sample-gql-api/infrastucture/storage/db/repo"
+	"github.com/kamilwoloszyn/sample-gql-api/infrastucture/persistence/db"
+	"github.com/kamilwoloszyn/sample-gql-api/infrastucture/persistence/db/repo"
 )
 
 func main() {
