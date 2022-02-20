@@ -3,10 +3,12 @@ services:
   db:
     image: mongo
     restart: always
+    ports:
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: pAsswordFORroot
-  mongo-gui:
+  mongo-express:
     image: mongo-express
     restart: always
     ports:
@@ -14,4 +16,4 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: admin
-      ME_CONFIG_MONGODB_URL: mongodb://root:pAsswordFORroot@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://root:pAsswordFORroot@sample-gql-api-db-1:27017/
