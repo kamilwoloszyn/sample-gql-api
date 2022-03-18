@@ -1,0 +1,16 @@
+type Category {
+    id: ID!
+    categoryName: String!
+}
+
+input CategoryInput {
+    categoryName: String!
+}
+
+type Query{
+    getCategoryId(input: CategoryInput!): Category!
+}
+
+type Mutation {
+    insertCategory(input: CategoryInput!): Category!
+}

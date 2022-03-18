@@ -1,0 +1,29 @@
+type Product {
+    id: ID!
+    name: String!
+    price: Float!
+	color: String!
+	gtin: String!
+	model: String!
+	countryOfAssembly: String!
+	category: Category!
+	sku: String!
+	createdAt: Int!
+	updatedAt: Int!
+	deletedAt: Int
+}
+
+input ProductInput {
+	name: String!
+	price: Float!
+	color: String
+	gtin: String
+	model: String
+	countryOfAssembly: String
+	category: Category!
+	sku: String
+}
+
+type Mutation {
+	insertProduct(input: ProductInput!): Product!
+}
